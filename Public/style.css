@@ -1,0 +1,154 @@
+:root {
+    --light-theme-color-0: #EEE;
+    --light-theme-color-1: #333;
+    --light-theme-color-2: #0AF;
+    --light-theme-color-3: #09C;
+
+    --dark-theme-color-0: #333;
+    --dark-theme-color-1: #fff;
+    --dark-theme-color-2: #FA0;
+    --dark-theme-color-3: #C90;
+}
+
+@supports not (selector(:has(*))) {
+    :root {
+        --theme-color-0: var(--light-theme-color-0);
+        --theme-color-1: var(--light-theme-color-1);
+        --theme-color-2: var(--light-theme-color-2);
+        --theme-color-3: var(--light-theme-color-3);
+    }
+}
+
+@supports selector(:has(*)) {
+    @media (prefers-color-scheme: light) {
+        :root {
+            --theme-color-0: var(--light-theme-color-0);
+            --theme-color-1: var(--light-theme-color-1);
+            --theme-color-2: var(--light-theme-color-2);
+            --theme-color-3: var(--light-theme-color-3);
+        }
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --theme-color-0: var(--dark-theme-color-0);
+            --theme-color-1: var(--dark-theme-color-1);
+            --theme-color-2: var(--dark-theme-color-2);
+            --theme-color-3: var(--dark-theme-color-3);
+        }
+    }
+
+    :root:has(#light-mode:checked) {
+        --theme-color-0: var(--light-theme-color-0);
+        --theme-color-1: var(--light-theme-color-1);
+        --theme-color-2: var(--light-theme-color-2);
+        --theme-color-3: var(--light-theme-color-3);
+    }
+
+    :root:has(#dark-mode:checked) {
+        --theme-color-0: var(--dark-theme-color-0);
+        --theme-color-1: var(--dark-theme-color-1);
+        --theme-color-2: var(--dark-theme-color-2);
+        --theme-color-3: var(--dark-theme-color-3);
+    }
+}
+
+* {
+    color: var(--theme-color-1);
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: var(--theme-color-0);
+}
+
+input[type="checkbox"], input[type="radio"] {
+    display: none;
+}
+
+label[for="side-panel"] {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    transform: translateX(100%);
+    font-size: 50px;
+    background-color: var(--theme-color-0);
+    border-right: 1px solid var(--theme-color-1);
+    border-bottom: 1px solid var(--theme-color-1);
+}
+
+aside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100svh;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: all 0.1s;
+    background-color: var(--theme-color-0);
+    border-right: 1px solid var(--theme-color-1);
+}
+
+#side-panel:not(:checked) ~ aside {
+    transform: translateX(-100%);
+}
+
+nav, form, section {
+    display: grid;
+    gap: 5px;
+    margin-bottom: 30px;
+}
+
+input {
+    background-color: var(--theme-color-0);
+    border: 1px solid var(--theme-color-1);
+}
+
+button {
+    background-color: var(--theme-color-2);
+    border: 1px solid var(--theme-color-3);
+    border-radius: 5px;
+}
+
+input[name="color-mode"]+label {
+    border: 1px solid transparent;
+}
+
+input[name="color-mode"]:checked+label {
+    background-color: var(--theme-color-2);
+    border: 1px solid var(--theme-color-3);
+}
+
+main {
+    display: grid;
+    grid-template-rows: auto 1fr 30px;
+    height: 100svh;
+    padding: 5px;
+}
+
+main a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--theme-color-2);
+    border: 1px solid var(--theme-color-3);
+    border-radius: 5px;
+}
+
+pre {
+    max-width: 100svw;
+    overflow: auto;
+}

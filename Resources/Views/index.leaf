@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="EN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>maze-server</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="icon.svg">
+</head>
+
+<body>
+    <input id="side-panel" type="checkbox" />
+    <aside>
+        <label for="side-panel">≡</label>
+        <h2>default-sizes</h2>
+        <nav>
+            <a href="?width=10&height=10">10x10</a>
+            <a href="?width=25&height=25">25x25</a>
+            <a href="?width=50&height=50">50x50</a>
+        </nav>
+        <h2>custom</h2>
+        <form>
+            <input name="width" type="number" min="3" max="50" placeholder="width" inputmode="numeric" required />
+            <input name="height" type="number" min="3" max="50" placeholder="height" inputmode="numeric" required />
+            <button type="submit">submit</button>
+        </form>
+        <h2>theme</h2>
+        <section>
+            <input id="system-mode" type="radio" name="color-mode" checked />
+            <label for="system-mode">system mode</label>
+            <input id="light-mode" type="radio" name="color-mode" />
+            <label for="light-mode">light mode</label>
+            <input id="dark-mode" type="radio" name="color-mode" />
+            <label for="dark-mode">dark mode</label>
+        </section>
+    </aside>
+
+    <main>
+        <h1>maze-server</h1>
+        <pre>#(maze)</pre>
+        <a href="?width=#(mazeWidth)&height=#(mazeHeight)">new</a>
+    </main>
+</body>
+
+</html>
